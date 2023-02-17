@@ -1,0 +1,9 @@
+@import "@fontsource/roboto/400.css";
+
+:root{
+  /*max-width: 400px;*/
+  margin: auto;
+}
+p{
+  font-family: Roboto, serif;
+}
