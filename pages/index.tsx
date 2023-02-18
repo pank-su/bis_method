@@ -9,8 +9,9 @@ import {
     ListItemButton,
     ListItemIcon, ListItemText
 } from "@mui/material";
-import {AppBar, Drawer, DrawerHeader} from "../src/Utils"
+import MySlides, {AppBar, Drawer, DrawerHeader} from "../src/Utils"
 import CssBaseline from '@mui/material/CssBaseline';
+import Reveal from 'reveal.js';
 
 import MuiDrawer from '@mui/material/Drawer';
 
@@ -20,7 +21,7 @@ import Box from '@mui/material/Box';
 import MenuIcon from '@mui/icons-material/Menu';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import theme from "../src/theme";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import {styled, useTheme, Theme, CSSObject} from '@mui/material/styles';
@@ -29,23 +30,40 @@ import Lottie from "lottie-react";
 import light from "../src/light.json";
 
 
+import Script from "next/script";
+
+
 const navs = [new NavEl("Теория", <InfoOutlinedIcon/>, <><Info/></>),
     new NavEl("Теория 2", <InfoOutlinedIcon/>, <>BLa-bla 2</>)]
 
 
 function Info() {
+    MySlides()
     return <>
-        <div style={{display: "flex", maxWidth: 500, margin: "auto", alignItems: "center", justifyContent: "center"}}><Lottie style={{width: '8%'}} animationData={light} loop={true}/> <Typography
-            variant="h5"
-            component="div" style={{textAlign: "center"}}>
-            Кратко и просто
+        <div className="reveal">
+            <div className="slides">
+                <section>
+                    <div style={{
+                        display: "flex",
+                        maxWidth: 500,
+                        margin: "auto",
+                        alignItems: "center",
+                        justifyContent: "center"
+                    }}><Lottie style={{width: '8%'}} animationData={light} loop={true}/> <Typography
+                        variant="h5"
+                        component="div" style={{textAlign: "center"}}>
+                        Кратко и просто
 
-        </Typography><Lottie style={{width: '8%'}} animationData={light} loop={true}/></div>
+                    </Typography><Lottie style={{width: '8%'}} animationData={light} loop={true}/></div>
+                </section>
+            </div>
 
+        </div>
     </>
 }
 
 export default function Index() {
+
     const [open, setOpen] = useState(false);
     const [selectedNav, setSelectedN] = useState(navs[0])
 
