@@ -75,24 +75,3 @@ export const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== '
 );
 
 
-import { useEffect } from "react"
-
-const MySlides = () => {
-    useEffect(() => {
-        // This will be executed in the browser (client-side).
-        const clientSideInitialization = async () => {
-            // load modules in browser
-            const Reveal = await (await import("reveal.js")).default
-            const deck = new Reveal({
-            })
-            deck.initialize()
-        }
-        clientSideInitialization()
-    })
-
-    return (
-        <div>SlideShow</div>
-    )
-}
-
-export default MySlides

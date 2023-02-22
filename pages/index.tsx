@@ -1,36 +1,26 @@
 import {
-    Toolbar,
-    Typography,
-
-    IconButton,
-
     Divider,
+    IconButton,
     List,
     ListItemButton,
-    ListItemIcon, ListItemText
+    ListItemIcon,
+    ListItemText,
+    Toolbar,
+    Typography
 } from "@mui/material";
-import MySlides, {AppBar, Drawer, DrawerHeader} from "../src/Utils"
+import {AppBar, Drawer, DrawerHeader} from "../src/Utils"
 import CssBaseline from '@mui/material/CssBaseline';
-import Reveal from 'reveal.js';
-
-import MuiDrawer from '@mui/material/Drawer';
-
-import MuiAppBar, {AppBarProps as MuiAppBarProps} from '@mui/material/AppBar';
+//import fs from "fs";
 import Box from '@mui/material/Box';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import theme from "../src/theme";
-import {useEffect, useState} from "react";
+import {PureComponent, useEffect, useState} from "react";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import {styled, useTheme, Theme, CSSObject} from '@mui/material/styles';
 import NavEl from "../src/NavEl";
-import Lottie from "lottie-react";
-import light from "../src/light.json";
-
-
-import Script from "next/script";
+import Frame from 'react-frame-component';
 
 
 const navs = [new NavEl("Теория", <InfoOutlinedIcon/>, <><Info/></>),
@@ -38,28 +28,22 @@ const navs = [new NavEl("Теория", <InfoOutlinedIcon/>, <><Info/></>),
 
 
 function Info() {
-    MySlides()
-    return <>
-        <div className="reveal">
-            <div className="slides">
-                <section>
-                    <div style={{
-                        display: "flex",
-                        maxWidth: 500,
-                        margin: "auto",
-                        alignItems: "center",
-                        justifyContent: "center"
-                    }}><Lottie style={{width: '8%'}} animationData={light} loop={true}/> <Typography
-                        variant="h5"
-                        component="div" style={{textAlign: "center"}}>
-                        Кратко и просто
 
-                    </Typography><Lottie style={{width: '8%'}} animationData={light} loop={true}/></div>
-                </section>
-            </div>
+    // const fileContents = fs.readFileSync('../src/infoPresentation/index.html', 'utf8');
+    const [data, setData] = useState('')
+    const [isLoading, setLoading] = useState(false)
 
-        </div>
-    </>
+    useEffect(() => {
+        setLoading(true)
+        fetch('/api/hello')
+            .then((res) => res!.body)
+            .then((data) => {
+                setData(data?.getReader().read()[Symbol.toStringTag]!)
+                setLoading(false)
+            })
+    }, [])
+
+    return <><div dangerouslySetInnerHTML={{__html: data}}></div></>
 }
 
 export default function Index() {
