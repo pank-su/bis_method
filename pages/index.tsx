@@ -16,11 +16,10 @@ import Box from '@mui/material/Box';
 import MenuIcon from '@mui/icons-material/Menu';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import theme from "../src/theme";
-import {PureComponent, useEffect, useState} from "react";
+import {useState} from "react";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import NavEl from "../src/NavEl";
-import Frame from 'react-frame-component';
 
 
 const navs = [new NavEl("Теория", <InfoOutlinedIcon/>, <><Info/></>),
@@ -28,22 +27,9 @@ const navs = [new NavEl("Теория", <InfoOutlinedIcon/>, <><Info/></>),
 
 
 function Info() {
-
-    // const fileContents = fs.readFileSync('../src/infoPresentation/index.html', 'utf8');
-    const [data, setData] = useState('')
-    const [isLoading, setLoading] = useState(false)
-
-    useEffect(() => {
-        setLoading(true)
-        fetch('/api/hello')
-            .then((res) => res!.body)
-            .then((data) => {
-                setData(data?.getReader().read()[Symbol.toStringTag]!)
-                setLoading(false)
-            })
-    }, [])
-
-    return <><div dangerouslySetInnerHTML={{__html: data}}></div></>
+    return <>
+        <iframe style={{width: "92vw", height: "85vh", borderWidth: 0}} src="https://pank-su.github.io/infoPresentation/" title="description"></iframe>
+    </>
 }
 
 export default function Index() {

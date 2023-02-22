@@ -17,8 +17,5 @@ type Data = {
 
 export default async function presentation(req: NextApiRequest,
                                      res: NextApiResponse<Data>){
-  res.setHeader("Content-Type", "text/html; charset=utf-8");
 
-  res.write(fs.readFileSync(path.resolve(__dirname,"../../../../src/infoPresentation/index.html"), "utf-8"));
-  res.end();
 }
