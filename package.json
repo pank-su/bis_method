@@ -29,7 +29,8 @@
     "react-dom": "18.2.0",
     "reveal.js": "^4.4.0",
     "typescript": "4.9.5",
-    "react-frame-component": "^5.2.6"
+    "react-frame-component": "^5.2.6",
+    "react-latex-next": "^2.2.0"
   },
   "devDependencies": {
     "@types/reveal.js": "^4.4.2"

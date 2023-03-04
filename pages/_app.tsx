@@ -14,9 +14,7 @@ export default function App({Component, pageProps}: AppProps) {
 
 
         </Head>
-        <Script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></Script>
-        <Script id="MathJax-script" async
-                src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.5/es5/tex-mml-chtml.js"></Script><Component {...pageProps} />
+        <Component {...pageProps} />
     </>
 
 }
