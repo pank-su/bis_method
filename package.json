@@ -1,5 +1,6 @@
 {
-  "name": "horner_method",
+  "name": "bis_method",
+  "description": "Это сайт, который позволяет решать методом половинчатого деления",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -30,7 +31,8 @@
     "reveal.js": "^4.4.0",
     "typescript": "4.9.5",
     "react-frame-component": "^5.2.6",
-    "react-latex-next": "^2.2.0"
+    "react-latex-next": "^2.2.0",
+    "recharts": "^2.4.3"
   },
   "devDependencies": {
     "@types/reveal.js": "^4.4.2"
