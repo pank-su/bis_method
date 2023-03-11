@@ -1,10 +1,13 @@
 import {
+    Button,
     Divider,
     IconButton,
-    List, ListItem,
+    List,
+    ListItem,
     ListItemButton,
     ListItemIcon,
     ListItemText,
+    Slider,
     Toolbar,
     Typography
 } from "@mui/material";
@@ -24,14 +27,13 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Unstable_Grid2';
 import Latex from 'react-latex-next'
 import Stack from '@mui/material/Stack';
-import {Slider, Button} from "@mui/material";
-import {LineChart, Line, CartesianGrid, YAxis, ReferenceLine, XAxis, ResponsiveContainer} from 'recharts';
+import {CartesianGrid, Line, LineChart, ReferenceLine, ResponsiveContainer, XAxis, YAxis} from 'recharts';
+import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
 import 'katex/dist/katex.min.css'
-import {Margin} from "@mui/icons-material";
 
 
 const navs = [new NavEl("Теория", <InfoOutlinedIcon/>, <><Info/></>),
-    new NavEl("Теория 2", <InfoOutlinedIcon/>, <><BisectionMethod/></>)]
+    new NavEl("Работа", <DoneOutlinedIcon/>, <><BisectionMethod/></>)]
 
 
 function valuetext(value: number) {
@@ -134,26 +136,36 @@ function BisectionMethod() {
             addStage(`${x2} - является корнем`)
             return;
         }
+        if ((y1 > 0 && y2 > 0) || (y1 < 0 && y2 < 0)) {
+            addStage("Значения не подходят для работы программы, так как график не пересакает ось OX")
+            return;
+        }
+
         let isReversed = y1 > 0 && y2 < 0
-        while (Math.abs(x1 - x2) > E){
-            let message = "Вычисляю новое значение ξ = "
+        // addStage(`${isReversed}`)
+        let ind = 1
+        while (Math.abs(x1 - x2) > E) {
+            let message = `${ind}. Вычисляю  $ξ_${ind} = `
             let newX = (x1 + x2) / 2;
-            message += newX + " "
+            message += newX + "$ "
             let newY = a * newX * newX * newX + b * newX * newX + c * newX + d
-            message += "Вычисляю значение y в этой точке: " + newY + " "
-            if (newY < 0 && !isReversed){
+            message += "Вычисляю значение y в этой точке: $y = " + newY + "$ "
+            if (newY < 0 && !isReversed) {
                 x1 = newX
-            }
-            else if (newY = 0){
+            } else if (newY == 0) {
                 addStage(message)
-                addStage("Корень найден  в точке " + newX)
+                addStage("$x " + newX + "$")
                 return;
+            } else if (newY > 0 && isReversed) {
+                x1 = newX
             } else {
                 x2 = newX
             }
-            message += " Новые ограничения " + "[" + x1 + ";" + x2 + "]"
+            message += " Новые ограничения $x \\in" + "[" + x1 + ";" + x2 + "]$"
             addStage(message)
+            ind++
         }
+        addStage("x = " + (x1 + x2) / 2)
     }
 
     // style={{width: "92vw", height: "85vh", borderWidth: 0}}
@@ -161,6 +173,9 @@ function BisectionMethod() {
         <Grid container>
             <Grid xs={12} style={{margin: "auto"}}>
                 <Stack>
+                    <Typography>
+                        Введите коэффициенты:
+                    </Typography>
                     <Grid container spacing={2}>
                         <Grid xs={3}>
                             <TextField
@@ -302,8 +317,9 @@ function BisectionMethod() {
             <Grid xs={6}>
                 <List>
                     {stages.map((value) => (<ListItem key={value}>
-                        <ListItemText
-                            primary={value}/>
+                        <Latex>
+                            {value}
+                        </Latex>
                     </ListItem>))}
 
                 </List>
@@ -347,7 +363,7 @@ export default function Index() {
                         <MenuIcon/>
                     </IconButton>
                     <Typography variant="h6" component="div">
-                        Схема горнера
+                        Метод половинного деления
                     </Typography>
                 </Toolbar>
             </AppBar>
