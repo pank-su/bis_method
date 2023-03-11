@@ -29,6 +29,7 @@ import Latex from 'react-latex-next'
 import Stack from '@mui/material/Stack';
 import {CartesianGrid, Line, LineChart, ReferenceLine, ResponsiveContainer, XAxis, YAxis} from 'recharts';
 import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
+
 import 'katex/dist/katex.min.css'
 
 
@@ -225,7 +226,7 @@ function BisectionMethod() {
                             <CartesianGrid strokeDasharray="3 3"/>
                             <YAxis
                                 dataKey="y"
-                                domain={['auto', 'auto']}
+                                domain={[-8, 8]}
                                 type="number"
                                 interval={0}
                                 label={{

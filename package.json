@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "install": "npm install"
+    "install": "aicommits"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -33,7 +33,8 @@
     "typescript": "4.9.5",
     "react-frame-component": "^5.2.6",
     "react-latex-next": "^2.2.0",
-    "recharts": "^2.4.3"
+    "recharts": "^2.4.3",
+    "desmos-react": "^1.2.0"
   },
   "devDependencies": {
     "@types/reveal.js": "^4.4.2"
